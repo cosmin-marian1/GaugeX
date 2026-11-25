@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+
+# OpenSCAD / KiCad temporary output
+*.tmp
+*.bak
+*-backup.kicad_*
+_autosave-*
+fp-info-cache
+
+# Local build/verification artifacts
+enclosure_check.stl
