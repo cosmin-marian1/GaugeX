@@ -1,5 +1,5 @@
 // ============================================================================
-//  GaugeX v2 - STEP 1: three fused tubes + low wedge + flat base
+//  GaugeX: three fused tubes + low wedge + flat base
 //
 //  PRINT ORIENTATION
 //    Rotate so the rear openings face UP.  Rest the part on the three front

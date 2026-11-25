@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hard envelope check for GaugeX v2 STLs.
+"""Hard envelope check for GaugeX STLs.
 
 Usage: check_size.py file.stl [--max-w 130] [--max-h 50] [--max-d 45]
 """

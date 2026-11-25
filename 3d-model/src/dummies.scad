@@ -1,5 +1,5 @@
 // ============================================================================
-//  GaugeX v2 - dummy electronics for fit checks only (never exported as parts)
+//  GaugeX - dummy electronics for fit checks only (never exported as parts)
 // ============================================================================
 include <params.scad>
 

@@ -1,5 +1,5 @@
 // ============================================================================
-//  GaugeX v2 - parameters (single source of truth)
+//  GaugeX - parameters (single source of truth)
 //  Units: mm.  All dimensions are nominal unless marked VERIFY.
 // ============================================================================
 

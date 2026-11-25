@@ -1,5 +1,5 @@
 // ============================================================================
-//  GaugeX v2 - STEP 2: removable back plate
+//  GaugeX - STEP 2: removable back plate
 //
 //  Covers the full cavity, carries 2 push-buttons and the cable exit slot,
 //  and is fixed with 4 x M3 screws into the body's heat-set inserts.

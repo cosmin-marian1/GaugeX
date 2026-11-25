@@ -3,10 +3,11 @@
 A compact three-gauge automotive pod for **three GC9A01 1.28" round SPI
 displays**, driven by an STM32.
 
-The current design is **v2**: three tubes fused side by side on a low wedge
-with a flat base. See [`3d-model/v2/README.md`](3d-model/v2/README.md).
+Three tubes are fused side by side on a low wedge with a flat base. See
+[`3d-model/README.md`](3d-model/README.md) for the full parameter list and
+assembly guide.
 
-## Current design (v2)
+## Design
 
 | | |
 |---|---|
@@ -23,14 +24,14 @@ with a flat base. See [`3d-model/v2/README.md`](3d-model/v2/README.md).
 Printable parts:
 
 ```text
-3d-model/v2/stl/body.stl
-3d-model/v2/stl/back_plate.stl
+3d-model/stl/body.stl
+3d-model/stl/back_plate.stl
 ```
 
 Build:
 
 ```bash
-cd 3d-model/v2
+cd 3d-model/src
 ./export_final.sh
 ```
 
@@ -42,9 +43,9 @@ exploded PNGs.
 
 | Path | Contents |
 |---|---|
-| `3d-model/v2/` | **current** compact pod (source, STL, renders, README) |
-| `3d-model/src/` | legacy v1 core/shell design |
-| `3d-model/stl/`, `3d-model/renders/` | legacy v1 exports |
+| `3d-model/src/` | parametric OpenSCAD source, checkers, export scripts |
+| `3d-model/stl/` | printable STLs |
+| `3d-model/renders/` | preview PNGs |
 | `pcb/` | KiCad project (placeholder) |
 | `firmware/` | STM32 firmware (placeholder) |
 | `docs/` | notes and datasheets (placeholder) |

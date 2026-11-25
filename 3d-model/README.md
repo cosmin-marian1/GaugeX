@@ -1,194 +1,160 @@
-# GaugeX 3D model — legacy v1 (core + shell)
+# GaugeX — compact 3-gauge pod
 
-> The current design is the compact pod in [`v2/README.md`](v2/README.md).
-> This document describes the earlier two-part core/shell version, kept for
-> reference.
+A small i30N-style three-tube gauge pod. This is the only current design.
 
-# GaugeX 3D model — modular (core + shell)
+## Files
 
-Two-part design:
+| File | Purpose |
+|---|---|
+| `src/params.scad` | every dimension and tolerance |
+| `src/body.scad` | three fused tubes + wedge + flat base |
+| `src/back_plate.scad` | removable back plate |
+| `src/dummies.scad` | display / PCB fit-check models (not printed) |
+| `src/gaugex.scad` | main model, assembly, dispatch |
+| `src/check_mesh.py` | manifold / volume / bbox checker |
+| `src/check_size.py` | hard envelope check (fails above 130 / 50 / 45) |
+| `src/export_step1.sh` | Step 1 export + renders |
+| `src/export_step2.sh` | Step 2 export + renders |
+| `src/export_final.sh` | final STL + render export |
 
-| Module | File | Changes per car? |
-|---|---|---|
-| **Core** — electronics tray + back cover | `src/core.scad` | **Never** |
-| **Shell** — display pods, hoods, base | `src/shell.scad` | Yes, via presets |
-| Presets — per-car shell overrides | `src/presets.scad` | — |
-| Main model / dispatch | `src/gaugex.scad` | — |
+Printable parts:
 
-The core is a self-contained module: 50 × 40 mm PCB tray, four M2.5
-heat-set standoffs, removable back cover (2 × 12 mm buttons, cable slot,
-vents, 4 × M3 screws) and a fixed 80 mm display-wire channel. It contains
-**no car-specific parameter**. The shell mounts on the core through a fixed
-interface: four M3 screws on a ±42 / ±28 mm pattern, the tray centred behind
-the middle gauge, and one standard display-wire opening.
-
-```
-cd src
-./export.sh              # default shell preset: generic
-./export.sh e90          # export the E90 shell + render it
+```text
+stl/body.stl          tubes + wedge + base
+stl/back_plate.stl    removable cover
 ```
 
-`export.sh` exports the core once, the shell for the chosen preset, all four
-shell variants, verifies that the core STLs are geometrically identical for
-`generic` and `e90`, checks every mesh and renders three PNGs.
+## Hard envelope
 
-> All dimensions are millimetres. Shell dimensions are arguments of
-> `shell(...)`; change them in `presets.scad`, not in the core.
+| | Measured | Limit | Margin |
+|---|---:|---:|---:|
+| Width | **129.80 mm** | 130.0 | 0.20 mm |
+| Height | **49.63 mm** (body) / **49.73 mm** (assembly) | 50.0 | 0.27 mm |
+| Depth | **39.95 mm** (body) / **43.36 mm** (assembly) | 45.0 | 1.64 mm |
 
----
+`export_final.sh` fails if any part or the assembled enclosure exceeds the
+limits.
 
-## 1. Fixed interface (shared constants)
+## Parameters (defaults)
 
-Defined in `core.scad`, read by `shell.scad`:
+### Displays / tubes
 
-| Constant | Value | Meaning |
-|---|---|---|
-| `CORE_W × CORE_H` | 100 × 76 mm | tray outer size |
-| `CORE_DEPTH` | 26 mm | tray depth |
-| `CORE_FRONT_Z` | −26 mm | tray front face = shell rear plane |
-| `CORE_IFACE_X/Y` | ±42 / ±28 mm | 4-screw pattern |
-| `WIRE_OPENING_W × H` | 74 × 9 mm | standard display-wire opening |
-| `display_wire_len` | 80 mm | display cable channel |
-| `WIRE_OPENING_Y` | 29 mm | opening / channel height |
+| Parameter | Default |
+|---|---:|
+| `DISPLAY_PCB_D` | 40.0 **VERIFY** |
+| `DISPLAY_ACTIVE_D` | 32.4 **VERIFY** |
+| `DISPLAY_GLASS_D` | 35.5 **VERIFY** |
+| `DISPLAY_TH` | 5.0 **VERIFY** |
+| `TUBE_CLEARANCE` | 0.6 |
+| `TUBE_WALL` | 1.8 |
+| `TUBE_OVERLAP` | 2.0 |
+| `TUBE_PITCH` | 42.2 (derived) |
+| `TUBE_SPAN` | 128.6 (derived) |
+| `TUBE_DEPTH` | 14.0 |
+| `FRONT_OPENING_D` | 37.5 |
+| `FRONT_LIP_W` | 1.2 |
+| `CLIP_COUNT` | 3 |
+| `CABLE_NOTCH_W × H` | 8 × 6 |
+| `HOOD_DEPTH` | 5.0 (full ring) |
+| `TILT_ANGLE` | 15° |
+| `SIDE_TOE_IN` | 0° |
 
-The back cover screws pass through the core's four through-bosses and thread
-into M3 heat-set inserts in the shell. One set of 4 × M3 × 35 mm screws clamps
-cover + core + shell.
+Shared wall between tubes:
 
-## 2. Core parameters (fixed)
+```text
+2 × 1.8 − 2.0 = 1.6 mm
+```
 
-| Parameter | Default | Meaning |
-|---|---|---|
-| `pcb_w × pcb_h × pcb_th` | 50 × 40 × 1.6 | main board |
-| `pcb_hole_spacing_x/y` | 44 / 34 | 4-hole pattern (full pitch) |
-| `standoff_h` | 7 | standoff height |
-| `m2p5_insert_d` / depth | 4.2 / 4.0 | M2.5 heat-set insert — **VERIFY** |
-| `m3_insert_d` / depth | 4.6 / 5.5 | M3 insert (in the shell) — **VERIFY** |
-| `m3_clear_d` | 3.4 | M3 clearance through core |
-| `button_dia` / spacing | 12 / 20 | panel push-buttons |
-| `cable_slot_w × h` | 20 × 8 | harness exit, top |
-| `vent_count/len/w` | 5 / 18 / 2.5 | ventilation slots |
-| `back_cover_th` | 2.4 | cover plate |
+### Wedge / base
 
-## 3. Shell parameters (per car)
+| Parameter | Default |
+|---|---:|
+| `WEDGE_WIDTH` | 129.8 |
+| `WEDGE_FRONT_Z` | −13.4 |
+| `WEDGE_BACK_Z` | −25.5 |
+| `WEDGE_FRONT_H` | 49.0 |
+| `WEDGE_REAR_H` | 44.8 |
+| `CAVITY_W × H` | 116 × 41.6 (full width) |
+| `BASE_W × L × TH` | 128 × 28 × 2.4 |
 
-Defaults live in `shell.scad`; each preset overrides only these.
+### PCB
 
-### Displays / pods
-| Parameter | Default | Meaning |
-|---|---|---|
-| `display_pcb_dia` | 40 | module PCB — **VERIFY** |
-| `display_active` | 32.4 | active area — **VERIFY** |
-| `display_bezel` | 35.5 | glass OD — **VERIFY** |
-| `display_thick` | 5.0 | module thickness — **VERIFY** |
-| `window_margin` | 0.5 | per side |
-| `face_t` | 1.5 | front window ring thickness |
-| `shell_wall` | 2.5 | pod wall |
-| `shoulder_th` | 2.5 | rear retaining shoulder |
-| `ret_ribs` | 4 | retention ribs per pod |
-| `tol_clear` | 0.3 | pocket clearance |
+| Parameter | Default |
+|---|---:|
+| `PCB_W × H × TH` | 50 × 40 × 1.6 |
+| `PCB_HOLE_X / Y` | 44 / 34 |
+| `STANDOFF_H` | 5.0 |
+| `M2P5_INSERT_D / depth` | 4.2 / 4.0 **VERIFY** |
 
-### Arc / orientation
-| Parameter | Default | Meaning |
-|---|---|---|
-| `arc_radius` | 320 | horizontal arc radius (mm) |
-| `display_spacing` | 50 | arc-length spacing between gauges |
-| `toe_in` | 0 | extra inward yaw of the outer gauges (°) |
-| `tilt` | 6 | common vertical tilt (°, positive = faces down) |
-| `hood_depth` | 6 | sun-hood height |
-| `hood_wall` | 1.8 | hood wall |
-| `hood_flare` | 1.4 | hood outward flare |
+### Back plate
 
-### Base
-| Parameter | Default | Meaning |
-|---|---|---|
-| `base_type` | `"flat"` | `flat` / `curved` / `clip` / `bracket` |
-| `base_width` | 110 | flange width |
-| `base_length` | 36 | flange length below the shell |
-| `base_th` | 3 | flange thickness |
-| `base_curve_radius` | 400 | dash crown radius (curved) |
+| Parameter | Default |
+|---|---:|
+| `BACK_PLATE_W × H × TH` | 120 × 43.5 × 3.0 |
+| `BACK_SCREW_DX / DY` | 38 / 14 |
+| `M3_INSERT_D / depth` | 4.6 / 5.5 **VERIFY** |
+| `BUTTON_D / spacing` | 12 / 20 |
+| `BUTTON_Y` | −10 |
+| `CABLE_SLOT_W × H` | 20 × 8 (top) |
 
-- **flat** — plain mounting flange.
-- **curved** — rear face trimmed to a concave cylinder of `base_curve_radius`
-  so it sits on a crowned dash.
-- **clip** — two U-slots form flexible tongues for a snap-in dash lip.
-- **bracket** — flange with two Ø4.5 mm holes and a stiffening rib.
+## Cable path
 
-### Derived
-| | generic | e90 |
-|---|---|---|
-| window Ø | 33.4 | 33.4 |
-| pocket Ø × depth | 40.6 × 6.8 | 40.6 × 6.8 |
-| pod depth | 9.3 | 9.3 |
-| pod Ø | 45.6 | 45.6 |
-| shell plate | 108 × 84 × 8 | 108 × 84 × 8 |
-| overall shell (W×H×D) | ~147.5 × 118 × 33 | ~152 × 128 × 40 |
-| total cluster depth | ~60 | ~66 |
+```text
+display → 8×6 notch at the bottom-rear of each tube
+        → full-width internal cavity
+        → 20×8 slot in the back plate (top centre)
+```
 
-## 4. Presets
+The cavity spans the full width so the side-tube cables are not blocked by the
+wedge.
 
-`src/presets.scad`:
-
-| Preset | Arc R | Spacing | Toe-in | Tilt | Hood | Base |
-|---|---|---|---|---|---|---|
-| `generic` | 320 | 50 | 0° | 6° | 5 | flat |
-| `e90` | 260 | 52 | 4° | 11° | 8 | curved (R300) |
-| `clip` | 300 | 50 | 2° | 8° | 6 | clip |
-| `bracket` | 340 | 50 | 0° | 5° | 5 | bracket |
-
-Add a new car by copying one module in `presets.scad`, changing only shell
-arguments, and adding it to `shell_preset()`.
-
-## 5. Print settings
+## Print settings
 
 | | Recommendation |
 |---|---|
-| Material | **ASA** (automotive UV/heat), PETG acceptable, PLA prototype only |
+| Material | **ASA** (automotive), PETG acceptable, PLA prototype only |
 | Nozzle / layer | 0.4 mm / 0.20 mm |
 | Perimeters | 3 |
-| Infill | core/shell 20–25 % gyroid; bracket base 40 % |
+| Infill | 20–25 % gyroid |
 | Supports | **none** |
-| Adhesion | brim for shell (large footprint) |
+| Adhesion | brim |
 
 ### Orientation
-- **shell** — rear interface plate **down** (flat on the bed). Pods, hoods and
-  the base flange stand up; no supports.
-- **core_tray** — front wall **down**, open back up.
-- **core_cover** — outer face **down**, buttons/vents up.
 
-## 6. Assembly order
+- **body** — rear openings **up**, resting on the three front hood/lip rims.
+  The flat base becomes a vertical fin. Tube pockets, cavity and clips need no
+  supports.
+- **back plate** — outer face **down**, locating lip up.
 
-1. Press 4 × M2.5 inserts into the core standoffs (from the open back).
-2. Press 4 × M3 inserts into the shell's rear bosses (from the rear).
-3. Screw the 50 × 40 PCB to the standoffs.
-4. Fit the 3 displays into the shell pods from the front; they rest on the
-   rear shoulder and are backed by the printed ribs.
-5. Route the three display cables through the pod collar slots and the
-   standard 74 × 9 opening into the core's top wire channel.
-6. Mate the core onto the shell rear plate (tray centred behind the middle
-   gauge), fit the cover lip, and drive 4 × M3 × 35 screws from the cover
-   through the core into the shell inserts.
-7. Install the 2 × 12 mm push-buttons; pass the harness through the 20 × 8
-   slot and secure it with a zip tie at the anchor.
-8. Mount the shell with the selected base profile.
+## Assembly
 
-## 7. What to verify with calipers
+1. Press 4 × M2.5 heat-set inserts into the PCB standoffs (from the rear).
+2. Press 4 × M3 heat-set inserts into the four rear pillars.
+3. Insert each GC9A01 from the **rear** of its tube. The Ø40 PCB pushes past
+   the three flexible clips and seats behind the front lip. Glass faces out.
+4. Route each display cable through its bottom-rear notch into the cavity.
+5. Screw the 50 × 40 PCB to the standoffs (screws from the rear).
+6. Fit the back plate locating lip into the cavity and drive 4 × M3 screws.
+7. Fit the two 12 mm push-buttons and pass the harness through the 20 × 8 slot.
+8. Mount with double-sided adhesive or screws through the flat base.
 
-1. Display module: PCB Ø40, glass Ø35.5, active Ø32.4, thickness 5.
-2. Whether the glass sits proud of the PCB (adjust `display_thick`).
-3. Rear FPC/connector clearance through the Ø35 rear opening.
-4. PCB outline and the 44 × 34 hole pattern.
-5. M2.5 and M3 insert diameters/depths.
+## Caliper checklist
+
+1. Display PCB Ø40, glass Ø35.5, active Ø32.4, thickness 5.
+2. Whether the glass sits proud of the PCB.
+3. FPC/connector clearance through the rear opening and notch.
+4. PCB outline and 44 × 34 hole pattern.
+5. M2.5 / M3 insert diameters and depths.
 6. Push-button body diameter behind the Ø12 holes.
-7. Dash crown radius for the `curved` base (`base_curve_radius`).
-8. Desired arc radius / spacing / tilt / toe-in for the car.
+7. Desired tilt and toe-in for the car.
 
-## 8. Debug renders
+## Rebuild
 
 ```bash
-openscad -o a.png -D 'PART="assembly"' -D 'PRESET="e90"' gaugex.scad
-openscad -o f.png -D 'PART="fitcheck"' -D 'PRESET="e90"' gaugex.scad
-openscad -o s.png -D 'PART="section"'  -D 'PRESET="e90"' gaugex.scad
-openscad -o x.png -D 'PART="exploded"' -D 'PRESET="e90"' gaugex.scad
-openscad -o t.png -D 'PART="stats"'    gaugex.scad
+cd 3d-model/src
+./export_final.sh
 ```
+
+The width is intentionally close to the 130 mm limit. If a real display module
+is larger than Ø40, increase `TUBE_OVERLAP` or reduce `TUBE_WALL` (minimum
+1.6) and re-run `check_size.py`.
