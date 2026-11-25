@@ -14,6 +14,9 @@ __pycache__/
 *.kicad_prl
 *.kicad_sch.*.bak
 .kicad-mcp/
+.history/
+~*.lck
+*.lck
 output/
 *-backup.kicad_*
 _autosave-*
