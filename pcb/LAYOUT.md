@@ -2,7 +2,7 @@
 
 KiCad project: `pcb/GaugeX/GaugeX.kicad_pro`
 Board: `pcb/GaugeX/GaugeX.kicad_pcb`
-Preview: `pcb/GaugeX/GaugeX_board.png`
+Previews: `GaugeX_board_routed.png`, `GaugeX_board_all_layers.png`
 
 ## Mechanical
 
@@ -14,41 +14,36 @@ Preview: `pcb/GaugeX/GaugeX_board.png`
 | Layers | **4 copper** (F.Cu / In1.Cu / In2.Cu / B.Cu), 1.6 mm |
 | Board origin | bottom-left |
 
-## Placement
+## Routing
 
-- 67 schematic footprints + 4 mounting holes = **71 footprints**
-- Functional zones:
-  - top edge: J1 power/CAN pads
-  - top-left: input protection + LM5164 buck
-  - centre: STM32G474 + decoupling + crystal
-  - top-right: TCAN330G + CAN protection
-  - bottom edge: J2–J4 display connectors
-  - right edge: J5 button connector
-  - edges: test pads
+| Item | Value |
+|---|---|
+| Tracks | **784** |
+| Vias | **107** |
+| Track widths | 0.20 mm signal, **0.60 mm power** |
+| GND zone | 1 plane on **B.Cu**, filled |
+| Router | FreeRouting 2.6 + manual GND via-in-pad fix |
+| DRC | **PASS — 0 errors, 0 warnings, 0 unconnected** |
 
-## DRC
+Notes:
 
-```text
-Errors:        0
-Warnings:      12  (silkscreen clearance / solder mask clipping)
-Unconnected:  147  (expected — no routing yet)
-Courtyard:      0
-```
-
-The 12 warnings are silkscreen-only (reference/value text on small passives).
-Reference/value text is hidden on passives; the remaining warnings are
-connector/pad silkscreen. No electrical errors.
+- All four layers are used: F.Cu 557 tracks, In1.Cu 92, In2.Cu 105, B.Cu 30.
+- Power nets (`VIN`, `+3V3`, `GND`) use 0.6 mm tracks.
+- Clearance is **0.15 mm** (JLCPCB-compatible); the project netclass was set to
+  0.15 mm accordingly.
+- The U1 exposed pad is connected to the B.Cu GND zone with a via placed away
+  from the inner-layer tracks.
+- Silkscreen references are hidden on passives and connectors to keep the
+  silkscreen clean.
 
 ## Not done
 
-- No tracks or vias
-- No copper zones / ground plane
-- No length matching or differential pair routing
-- No final Gerber/drill export
+- Gerber / drill / BOM / pick-and-place export
+- DFM sign-off for the chosen fab
+- Electrical review of the final netlist vs the schematic (ERC already PASS)
 
 ## Next
 
-1. Fix the 12 silkscreen warnings (move/hide remaining text).
-2. Route power first: input → buck → 3V3, then CAN pair, then SPI/display, then buttons/SWD.
-3. Add solid GND plane on L2, 3V3/power on L3.
-4. DRC 0 errors, then Gerber/drill/BOM/P&P export.
+1. Export Gerbers + drill + BOM/P&P.
+2. Run the fab DFM profile (JLCPCB).
+3. Final visual review and release.

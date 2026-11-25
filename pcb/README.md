@@ -23,9 +23,8 @@ the Micro-Fit connector is on the cable end, outside the enclosure.
 
 - Schematic: **ERC PASS, 0 violations** (KiCad 10.0.8).
 - Netlist verified for CAN, SPI, power, crystal and reset nets.
-- Schematic layout is a first-pass auto-placement (label-based); visual
-  cleanup/hierarchical split is pending.
 - PCB: **50 × 40 mm, 4 layers**, 4 × M2.5 holes on 44 × 34 mm.
-- Placement: **71 footprints**, DRC **0 errors**, 12 silkscreen warnings,
-  147 unconnected (expected before routing).
-- **No routing yet.**
+- Placement: **71 footprints**.
+- Routing: **784 tracks, 107 vias, B.Cu GND plane**.
+- DRC: **PASS — 0 errors, 0 warnings, 0 unconnected**.
+- Next: Gerber/drill export and DFM review.
