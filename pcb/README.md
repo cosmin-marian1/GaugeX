@@ -8,7 +8,8 @@ KiCad project and board documentation.
 | `DESIGN.md` | block diagram, pin table, power budget, mechanical/height checks |
 | `BOM.md` | draft BOM, prices, alternatives |
 | `SCHEMATIC.md` | schematic status, ERC result, net checks, known follow-ups |
-| `GaugeX/` | KiCad 10 project, schematic PDF/PNG, netlist |
+| `LAYOUT.md` | board outline, placement, DRC status |
+| `GaugeX/` | KiCad 10 project, schematic PDF/PNG, netlist, board preview |
 | `../docs/datasheets/INDEX.md` | datasheet index and verified extracts |
 
 Board: **50 × 40 × 1.6 mm**, 4 layers, 4 × M2.5 on a **44 × 34 mm** pattern.
@@ -24,4 +25,7 @@ the Micro-Fit connector is on the cable end, outside the enclosure.
 - Netlist verified for CAN, SPI, power, crystal and reset nets.
 - Schematic layout is a first-pass auto-placement (label-based); visual
   cleanup/hierarchical split is pending.
-- **No PCB placement or routing yet.**
+- PCB: **50 × 40 mm, 4 layers**, 4 × M2.5 holes on 44 × 34 mm.
+- Placement: **71 footprints**, DRC **0 errors**, 12 silkscreen warnings,
+  147 unconnected (expected before routing).
+- **No routing yet.**
