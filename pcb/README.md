@@ -1,12 +1,19 @@
 # PCB
 
-KiCad project goes here.
+KiCad project and board documentation.
 
-Planned: STM32 main board, **50 × 40 mm** (core default), carrying the MCU,
-three GC9A01 SPI display connectors, panel-button inputs and the car-harness
-connector.
+| File | Contents |
+|---|---|
+| `GaugeX_PCB_spec.md` | requirements and decisions |
+| `DESIGN.md` | block diagram, pin table, power budget, mechanical/height checks |
+| `BOM.md` | draft BOM, prices, alternatives |
+| `../docs/datasheets/INDEX.md` | datasheet index and verified extracts |
 
-The board mounts in the universal core on four M2.5 standoffs with a
-**44 × 34 mm** hole pattern (`pcb_hole_spacing_x/y` in
-`../3d-model/src/core.scad`). Keep the connectors on the back side: the core
-provides ~14 mm of depth behind the board.
+Board: **50 × 40 × 1.6 mm**, 4 layers, 4 × M2.5 on a **44 × 34 mm** pattern.
+Mounts behind the centre tube of the compact pod (`../3d-model/src`). Back-side
+component height limit is **3.0 mm**; front side **5.0 mm**.
+
+Power/CAN leave the board through **4 solder pads + pigtail** at the top edge;
+the Micro-Fit connector is on the cable end, outside the enclosure.
+
+No schematic or layout yet.
