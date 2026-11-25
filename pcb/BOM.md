@@ -37,7 +37,7 @@ stock check.
 | Ref | Value / MPN | Package | Qty | Mouser | LCSC | ~Unit | Notes |
 |---|---|---|---:|---|---|---:|---|
 | U1 | ST **STM32G474CBU6** | UFQFPN48 7×7 | 1 | 511-STM32G474CBU6 | search MPN | $7.50 | 128 KB flash / 128 KB RAM `[VERIFY]` stock |
-| Y1 | Abracon **ABM8-8.000MHZ-B2-T** | 3.2×2.5 | 1 | 815-ABM8-8.000MHZ-B2-T | search MPN | $0.80 | 8 MHz `[VERIFY]` |
+| Y1 | Abracon **ABM8-8.000MHZ-B2-T** | 3.2×2.5 | 1 | 815-ABM8-8.000MHZ-B2-T | search MPN | $0.80 | 8 MHz; schematic uses a 3.2×1.5 2-pin footprint placeholder `[VERIFY]` |
 | C_HSE1/2 | 10 pF (value from crystal CL) | 0402 | 2 | generic | C-`[VERIFY]` | $0.01 | `[VERIFY]` |
 | C_VDD1..4 | 100 nF / 50 V | 0402 | 4 | generic | **C1525** | $0.01 | one per VDD |
 | C_VDDA1 | 1 µF / 16 V | 0402 | 1 | generic | C-`[VERIFY]` | $0.03 | |

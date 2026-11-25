@@ -11,6 +11,10 @@ __pycache__/
 # OpenSCAD / KiCad temporary output
 *.tmp
 *.bak
+*.kicad_prl
+*.kicad_sch.*.bak
+.kicad-mcp/
+output/
 *-backup.kicad_*
 _autosave-*
 fp-info-cache
