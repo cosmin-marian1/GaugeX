@@ -31,12 +31,12 @@ CAN traces always run over an uninterrupted reference plane.
 
 | Item | Value |
 |---|---|
-| Tracks | **619** (F.Cu 383 / B.Cu 236) |
-| Vias | **166** — 149 × 0.5/0.2, 15 × 0.6/0.3, 2 × 0.46/0.2 |
+| Tracks | **611** (F.Cu 381 / B.Cu 230) |
+| Vias | **168** — 155 × 0.5/0.2, 11 × 0.6/0.3, 2 × 0.46/0.2 |
 | Track widths | 0.20 mm signal, 0.60 mm power (`Default` / `Power` netclasses) |
 | Zones | In1 GND, In2 +3V3 + GND, B.Cu GND, F.Cu GND — all filled |
-| GND vias | 64 (22 per-pad fanout, 9 in U1 exposed pad, 27 perimeter ring, island/plane ties, 1 at J1) |
-| Protrusion below board | **0 mm** — no THT component pads (only 4 × Ø2.7 NPTH holes and U2's 6 × Ø0.2 plated thermal vias) |
+| GND vias | 70 (22 per-pad fanout, 9 in U1 EP, 6 in U2 EP, 27 perimeter ring, island/plane ties, 1 at J1) |
+| Protrusion below board | **0 mm** — no THT component pads (only the 4 × Ø2.7 NPTH mounting holes) |
 | DRC | **0 errors, 0 unconnected, 1 warning** |
 
 ### Design rules
@@ -102,8 +102,12 @@ board, and it wraps the edge to the back-plate cable slot at `y = +10`.
 
 ## Known limitations / Rev B
 
-- **C5 (BOOT cap) sits ~10 mm from U2** (pads 7/8). The SW/BST loop is longer
-  than ideal for a 300 kHz buck. Move C5 next to U2 pins 7 and 8 in Rev B.
+- **Buck area (fixed in this revision):** C2 (100 nF input decoupling) moved from
+  (13.5, 11.0) to (6.05, 13.76), 1.31 mm from U2 pins 1/2 and planar; C5 (2.2 nF
+  BST) moved from (22.0, 12.0) to (13.95, 13.90), 1.30/1.34 mm from pins 7/8.
+  Input loop 2.59 → **1.45 mm²**, no vias in it; SW copper 13.8 → **4.06 mm**.
+  Both footprints are deliberately flush with U2, so their courtyard was removed
+  on those two instances (the project already ignores missing courtyards).
 - **2 × 0.46/0.2 mm GND vias** (C10.2 under the HSE load cap, and one pour-island
   stitch at 33.6/26.6). 0.46 mm is the smallest diameter that keeps JLCPCB's
   0.13 mm annular minimum with a 0.2 mm drill; a 0.5 mm via does not fit there.

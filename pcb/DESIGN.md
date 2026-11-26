@@ -145,6 +145,21 @@ be read off the Coilcraft datasheet at order time `[VERIFY]`.
 Consequence for mechanics: XAL5030 is **3.0–3.1 mm tall**, which makes it the
 tallest part on the front side after C8 (see §7).
 
+### 4.5 Bootstrap capacitor C5 — datasheet check
+
+Verified against **SNVSB51C** (LM5164-Q1):
+
+| Source | Statement |
+|---|---|
+| p. 3, Pin Functions (pin 7 = BST) | "Required to connect a high-quality **2.2 nF 50 V X7R** ceramic capacitor between BST and SW" |
+| p. 4, Recommended Operating Conditions | external BST–SW capacitance **1.5 … 2.5 nF** |
+| p. 12, §6.3.2 | a higher value "stresses the internal VCC regulator and damages the device"; a lower one cannot drive the gate |
+| p. 17, typical-application BOM | `CBST` = **2.2 nF, 50 V, X7R, 10 %** (Murata GCM155R71H222KA37D) |
+
+C5 = **2.2 nF / 50 V / X7R / 0402** is correct — no schematic change. Only its
+placement changed: it now sits 1.30 mm (BST) and 1.34 mm (SW) from pins 7/8,
+down from 9.2 / 9.9 mm.
+
 ## 5. MCU and pin allocation
 
 **STM32G474CBU6**, UFQFPN48 7×7, 128 KB flash, 128 KB RAM.

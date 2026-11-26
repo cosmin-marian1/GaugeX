@@ -19,7 +19,7 @@ stock check.
 | C_in2 | 100 nF / 50 V X7R | 0402 | 2 | 81-GRM155R71H104KA88D | **C1525** | $0.01 | |
 | C_bulk | 10 µF / 25 V X5R | 1206 | 1 | 81-GRM31CR61E106KA12L | C-`[VERIFY]` | $0.18 | |
 | C_out | 22 µF / 10 V X5R | 0805 | 2 | 81-GRM21BR61A226ME44L | C-`[VERIFY]` | $0.15 | |
-| C_bst | 2.2 nF / 50 V | 0402 | 1 | generic | C-`[VERIFY]` | $0.01 | `[VERIFY]` per datasheet |
+| C_bst | 2.2 nF / 50 V **X7R** | 0402 | 1 | generic | C-`[VERIFY]` | $0.01 | confirmed SNVSB51C p.3/p.12/p.17 (allowed 1.5–2.5 nF, p.4) |
 | R_RON | 27.5 kΩ 1 % | 0402 | 1 | generic | C-`[VERIFY]` | $0.01 | 300 kHz |
 | R_FB1/2 | per LM5164 datasheet | 0402 | 2 | generic | C-`[VERIFY]` | $0.01 | `[VERIFY]` values |
 | C_ff | per LM5164 datasheet | 0402 | 1 | generic | C-`[VERIFY]` | $0.01 | `[VERIFY]` |

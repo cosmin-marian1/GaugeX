@@ -12,9 +12,9 @@ Layout description: `pcb/LAYOUT.md`
 | DRC errors | **0** |
 | DRC warnings | **1** (cosmetic, see below) |
 | Unconnected items | **0** |
-| Tracks | 619 (F.Cu 383 / B.Cu 236) |
+| Tracks | 611 (F.Cu 381 / B.Cu 230) |
 | Signal tracks on In1/In2 | **0** |
-| Vias | 166 |
+| Vias | 168 |
 | Protrusion below the board | **0 mm** (no THT component pads) |
 | Zones | In1 GND, In2 +3V3 + GND, B.Cu GND, F.Cu GND — all filled |
 
@@ -27,8 +27,8 @@ It has no effect on fabrication.
 
 | Size (pad / drill) | Count | Use |
 |---|---|---|
-| 0.50 / 0.20 mm | 149 | signal + GND stitching |
-| 0.60 / 0.30 mm | 15 | power nets (incl. +12V_IN at J1) |
+| 0.50 / 0.20 mm | 155 | signal + GND stitching (incl. 6 U2 thermal vias) |
+| 0.60 / 0.30 mm | 11 | power nets (incl. +12V_IN at J1) |
 | 0.46 / 0.20 mm | 2 | C10.2 GND and one pour-island tie (0.5 mm does not fit) |
 
 Annular ring is 0.15 mm for 0.5/0.6 vias and 0.13 mm for the 0.46 vias, i.e.
@@ -70,7 +70,11 @@ standard way to escape a 0.5 mm QFN on 2 signal layers.
    (3×3, 1.6 mm pitch), a 27-via perimeter ring, and one stitching via in every
    F.Cu pour island that contained a pad.
 6. Fill and DRC until 0 errors / 0 unconnected.
-7. **J1 rework** (branch `pcb/j1-solder-pads`): the vertical 1×04 THT header was
+7. **Buck area**: C2 to 1.31 mm from U2 pins 1/2 (planar, no vias), C5 to
+   1.30/1.34 mm from pins 7/8, SW node re-routed through the C5 pad
+   (13.8 → 4.06 mm), input loop 2.59 → 1.45 mm². U2's six 0.2 mm PTH pad-holes
+   replaced by 0.5/0.2 vias, tented both sides.
+8. **J1 rework** (branch `pcb/j1-solder-pads`): the vertical 1×04 THT header was
    replaced by 4 SMD pads (2.0 × 2.6 mm, 2.54 mm pitch, no drill, no paste) at
    the same X positions on the top edge — the edge nearest the back-plate cable
    slot. `+12V_IN` and `CANH_J` used the THT barrel to change layer, so each got
