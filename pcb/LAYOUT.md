@@ -13,6 +13,7 @@ Previews: `GaugeX_board_routed.png` (F.Cu + B.Cu + silk), `GaugeX_board_all_laye
 | Hole positions | (3,3), (47,3), (3,37), (47,37) |
 | Layers | **4 copper**, 1.6 mm |
 | Footprints | 71 (67 parts + 4 mounting holes) |
+| Power entry | **J1 = 4 SMD solder pads**, 2.0 × 2.6 mm, 2.54 mm pitch, top edge — no drill, nothing below the board |
 
 ## Stackup
 
@@ -30,11 +31,12 @@ CAN traces always run over an uninterrupted reference plane.
 
 | Item | Value |
 |---|---|
-| Tracks | **617** (F.Cu 381 / B.Cu 236) |
-| Vias | **163** — 147 × 0.5/0.2, 14 × 0.6/0.3, 2 × 0.46/0.2 |
+| Tracks | **619** (F.Cu 383 / B.Cu 236) |
+| Vias | **166** — 149 × 0.5/0.2, 15 × 0.6/0.3, 2 × 0.46/0.2 |
 | Track widths | 0.20 mm signal, 0.60 mm power (`Default` / `Power` netclasses) |
 | Zones | In1 GND, In2 +3V3 + GND, B.Cu GND, F.Cu GND — all filled |
-| GND vias | 63 (22 per-pad fanout, 9 in U1 exposed pad, 27 perimeter ring, island/plane ties) |
+| GND vias | 64 (22 per-pad fanout, 9 in U1 exposed pad, 27 perimeter ring, island/plane ties, 1 at J1) |
+| Protrusion below board | **0 mm** — no THT component pads (only 4 × Ø2.7 NPTH holes and U2's 6 × Ø0.2 plated thermal vias) |
 | DRC | **0 errors, 0 unconnected, 1 warning** |
 
 ### Design rules
@@ -83,6 +85,20 @@ up and re-routed:
 | R1 (FB divider) | unchanged | would have blocked the NRST escape |
 | C10 | unchanged | HSE load cap; GND via fitted after LED_DRIVE re-route |
 | C22 | unchanged | 3V3/BTN1 decoupling, via-in-pad GND |
+| **J1** | PinHeader 1×04 P2.54 THT → `GaugeX:GaugeX_SolderPad_1x04_P2.54mm` (4 SMD pads) | removes 8.65 mm above / 3.11 mm of pin below; +12V_IN and CANH_J moved to a via 2 mm below the pads |
+
+## Component heights
+
+All 67 parts are on the **front** face. Heights are STEP-model Z extents
+(details and flags in `DESIGN.md` §7):
+
+| Face | Limit | Tallest part |
+|---|---|---|
+| Front (toward the displays) | 5.0 mm | C8 4.50 mm (DNP); otherwise L2 3.10 mm |
+| Back (toward the back plate) | 3.0 mm | nothing — the face is empty |
+
+J1 is now 0.05 mm of copper; the flying lead is the only thing leaving the
+board, and it wraps the edge to the back-plate cable slot at `y = +10`.
 
 ## Known limitations / Rev B
 

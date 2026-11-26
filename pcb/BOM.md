@@ -14,7 +14,7 @@ stock check.
 | D2 | Littelfuse **SMBJ24A** | SMB | 1 | 576-SMBJ24A | search MPN | $0.36 | load dump |
 | U2 | TI **LM5164QDDARQ1** | VSSOP-10 | 1 | 595-LM5164QDDARQ1 | search MPN | $3.50 | 100 V / 1 A buck `[VERIFY]` |
 | U2-ALT | TI **TPS54360BQDDARQ1** (alternate) | HSOIC-8 | 0–1 | 595-TPS54360BQDDARQ1 `[VERIFY]` | search MPN | $4.50 | lower Vin (4.5 V), not fitted by default |
-| L2 | Würth **74437349010**, 10 µH | 5×5×2.0 | 1 | 710-74437349010 | search MPN | $1.60 | Isat ≥2.5 A `[VERIFY]` |
+| L2 | Coilcraft **XAL5030-103MEC**, 10 µH ±20 %, AEC-Q200 | 5.3×5.3×3.0 | 1 | search MPN | search MPN | ~$1.60 | Isat / Irms / DCR `[VERIFY]`; load check in DESIGN §4.4 (0.70 A peak, 0.28 A rms) |
 | C_in1 | 4.7 µF / 25 V X5R | 0805 | 1 | 81-GRM21BR61E475KA12L | C-`[VERIFY]` | $0.10 | |
 | C_in2 | 100 nF / 50 V X7R | 0402 | 2 | 81-GRM155R71H104KA88D | **C1525** | $0.01 | |
 | C_bulk | 10 µF / 25 V X5R | 1206 | 1 | 81-GRM31CR61E106KA12L | C-`[VERIFY]` | $0.18 | |
@@ -67,7 +67,7 @@ Alternative CAN transceiver: **SN65HVD230QDRQ1** (Mouser 595-SN65HVD230QDRQ1) `[
 
 | Ref | Value / MPN | Package | Qty | Mouser | LCSC | ~Unit | Notes |
 |---|---|---|---:|---|---|---:|---|
-| J1 | **4 through-hole solder pads** (no board connector) | pad, 2.54 mm | 1 | n/a | n/a | $0 | 12V/GND/CAN_H/CAN_L, strain-relief hole |
+| J1 | **4 SMD solder pads** (no connector), 2.0 × 2.6 mm, 2.54 mm pitch | pad, 2.54 mm | 1 | n/a | n/a | $0 | 12V/GND/CAN_H/CAN_L flying lead; no drill, no paste, nothing below the board |
 | J1-cable | Molex **43025-0400** housing + **43030-0007** terminals ×4 + TPA | cable end | 1 kit | 538-43025-0400 / 538-43030-0007 | search MPN | $2.00 | outside enclosure `[VERIFY]` |
 | J2–J4 | JST **SM08B-SRSS-TB(LF)(SN)**, 8-pin right-angle | SMT | 3 | 306-SM08B-SRSSTB | search MPN | $0.90 | displays `[VERIFY]` |
 | J5 | JST **SM04B-SRSS-TB(LF)(SN)**, 4-pin right-angle | SMT | 1 | 306-SM04B-SRSSTB | search MPN | $0.60 | buttons |

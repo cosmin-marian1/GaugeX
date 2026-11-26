@@ -19492,7 +19492,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
+		(property "Footprint" "GaugeX:GaugeX_SolderPad_1x04_P2.54mm"
 			(at 181.61 59.69 0)
 			(hide yes)
 			(show_name no)

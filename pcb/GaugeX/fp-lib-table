@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "GaugeX")(type "KiCad")(uri "${KIPRJMOD}/GaugeX.pretty")(options "")(descr "GaugeX project footprints"))
+)

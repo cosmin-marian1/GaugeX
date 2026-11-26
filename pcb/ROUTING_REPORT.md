@@ -12,9 +12,10 @@ Layout description: `pcb/LAYOUT.md`
 | DRC errors | **0** |
 | DRC warnings | **1** (cosmetic, see below) |
 | Unconnected items | **0** |
-| Tracks | 617 (F.Cu 381 / B.Cu 236) |
+| Tracks | 619 (F.Cu 383 / B.Cu 236) |
 | Signal tracks on In1/In2 | **0** |
-| Vias | 163 |
+| Vias | 166 |
+| Protrusion below the board | **0 mm** (no THT component pads) |
 | Zones | In1 GND, In2 +3V3 + GND, B.Cu GND, F.Cu GND — all filled |
 
 The single warning is `lib_footprint_mismatch` on U1: the 16 mask-only land
@@ -26,8 +27,8 @@ It has no effect on fabrication.
 
 | Size (pad / drill) | Count | Use |
 |---|---|---|
-| 0.50 / 0.20 mm | 147 | signal + GND stitching |
-| 0.60 / 0.30 mm | 14 | power nets |
+| 0.50 / 0.20 mm | 149 | signal + GND stitching |
+| 0.60 / 0.30 mm | 15 | power nets (incl. +12V_IN at J1) |
 | 0.46 / 0.20 mm | 2 | C10.2 GND and one pour-island tie (0.5 mm does not fit) |
 
 Annular ring is 0.15 mm for 0.5/0.6 vias and 0.13 mm for the 0.46 vias, i.e.
@@ -69,6 +70,12 @@ standard way to escape a 0.5 mm QFN on 2 signal layers.
    (3×3, 1.6 mm pitch), a 27-via perimeter ring, and one stitching via in every
    F.Cu pour island that contained a pad.
 6. Fill and DRC until 0 errors / 0 unconnected.
+7. **J1 rework** (branch `pcb/j1-solder-pads`): the vertical 1×04 THT header was
+   replaced by 4 SMD pads (2.0 × 2.6 mm, 2.54 mm pitch, no drill, no paste) at
+   the same X positions on the top edge — the edge nearest the back-plate cable
+   slot. `+12V_IN` and `CANH_J` used the THT barrel to change layer, so each got
+   a 2 mm F.Cu stub plus a via below the pad; a GND via sits 1.9 mm behind pad
+   2 for the return. DRC after the rework: 0 errors, 0 unconnected.
 
 ## Rules actually used
 
@@ -90,9 +97,12 @@ standard way to escape a 0.5 mm QFN on 2 signal layers.
 | Via sizes | 0.5/0.2, 0.6/0.3 | + **2 × 0.46/0.2** | 0.5 mm via does not fit at C10.2 / one island; 0.46 keeps 0.13 mm annular |
 | C5 (BOOT cap) | near U2 | 10 mm away | placement was frozen; loop is longer than ideal — move in Rev B |
 | CAN pair | routed as a pair | split at L1 | L1 (CMC) is DNP, R17/R18 bypasses sit at opposite edges |
+| Power entry | THT header (4 × Ø1.0 holes) | **4 SMD pads, no drill** | the enclosure back gap is 3.4 mm; the header's 3.11 mm pin tails + solder had no margin, and nothing may protrude below the board |
 
 ## Open items before release
 
 - Gerber / drill / BOM / pick-and-place export.
 - JLCPCB DFM profile on the final gerbers.
 - Rev B: move C5 next to U2 pins 7/8; move R17/R18 next to L1.
+- J1 pads are hand-soldered (no paste window): keep them out of the SMT stencil
+  and put "do not place" for J1 in the P&P file.

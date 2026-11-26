@@ -28,25 +28,28 @@ Status: pre-schematic. Everything not confirmed from a datasheet is marked
 
 ### J1 — solder pads, pigtail, external Micro-Fit
 
-There is **no PCB-mounted power connector**. The board has **4 through-hole
-solder pads** on the top edge:
+There is **no PCB-mounted power connector**. The board has **4 SMD solder
+pads** on the top edge — the edge nearest the enclosure cable slot:
 
 | Pad | Net | Position |
 |---|---|---|
-| 1 | 12V | top edge, 2.54 mm pitch |
+| 1 | 12V | top edge, 2.54 mm pitch, pads 2.0 × 2.6 mm |
 | 2 | GND | |
 | 3 | CAN_H | |
 | 4 | CAN_L | |
 
-Proposed: 1.0 mm drill / 2.0 mm annular pad, plus a 2 mm strain-relief hole
-nearby for a zip tie. A short **pigtail** is soldered to the pads, dressed to
-the enclosure's **20 × 8 mm** back-plate slot at `y=+10`, and terminated
-outside in a **Micro-Fit 3.0 4-pin receptacle**. The mating plug/harness stays
-outside the enclosure; no tall connector is mounted on the PCB.
+The pads are **SMD only** (`F.Cu` + `F.Mask`, no paste, no drill), so nothing
+protrudes below the board — the case is the same as any 0402. A short
+**pigtail** is soldered to the pads, dressed around the board edge to the
+enclosure's **20 × 8 mm** back-plate slot at `y=+10` (PCB `y≈+10`), and
+terminated outside in a **Micro-Fit 3.0 4-pin receptacle**. The mating
+plug/harness stays outside the enclosure; no tall connector is mounted on the
+PCB.
 
 This removes the 9.9 mm Micro-Fit body from the cavity entirely. The only
 height contribution on the board is the solder joint and the wire, which lie
-flat.
+flat. Footprint: `GaugeX:GaugeX_SolderPad_1x04_P2.54mm` (project library
+`pcb/GaugeX/GaugeX.pretty`).
 
 ## 3. Block diagram
 
@@ -91,7 +94,7 @@ D2 is after D1, so a reverse-connected battery is blocked instead of clamped.
 | Output | 3.3 V, up to 1 A | decided |
 | Switching frequency | 300 kHz | proposed |
 | R_RON | 27.5 kΩ (3.3 × 2500 / 300) | `[VERIFY]` E-series value |
-| Inductor | 10 µH, 5 × 5 × 2.0 mm, Isat ≥ 2.5 A | `[VERIFY]` |
+| Inductor | 10 µH, Coilcraft **XAL5030-103MEC**, 5.3 × 5.3 × 3.0 mm | Isat / DCR check in §4.4 |
 | Output caps | 2 × 22 µF / 10 V 0805 + 100 nF | `[VERIFY]` |
 | Bootstrap cap | 2.2 nF | `[VERIFY]` per datasheet |
 | Feedback | 3.3 V divider per datasheet | `[VERIFY]` |
@@ -110,6 +113,37 @@ D2 is after D1, so a reverse-connected battery is blocked instead of clamped.
 - Max 3.3 V power: 279 mA × 3.3 V ≈ **0.92 W**.
 - Input at 85 % efficiency: ≈ **1.08 W** → **90 mA @ 12 V**, **180 mA @ 6 V**.
 - LM5164-Q1 1 A rating → **>3.5× margin** at the worst case.
+
+### 4.4 Inductor L2 — rating check against the buck load
+
+L2 = **Coilcraft XAL5030-103MEC**, 10 µH ±20 %, AEC-Q200, 5.3 × 5.3 × 3.0 mm.
+
+Load seen by the inductor at 300 kHz (worst case: 13.8 V in, D = 3.3/13.8 = 0.239):
+
+```text
+ΔI_L   = Vout · (1 − D) / (L · f) = 3.3 × 0.761 / (10 µH × 300 kHz) = 0.84 A pk-pk
+I_pk   ≈ I_out + ΔI_L/2 = 0.28 + 0.42 = 0.70 A
+I_rms  ≈ I_out = 0.28 A
+```
+
+Requirement: **Isat ≥ 1.0 A** (1.4× margin), **Irms ≥ 0.3 A**, **DCR ≪ 100 mΩ**.
+
+The XAL5030-103 is in the multi-amp class for 10 µH: the same-family XAL5050
+10 µH row is DCR 40.9/45.0 mΩ typ/max, Isat 4.9 A, Irms 3.6/4.9 A; the
+smaller 5030 body has higher DCR and lower current. Even with the conservative
+bound **DCR ≤ 70 mΩ**, conduction loss is
+
+```text
+P_DCR = I_rms² · DCR = 0.28² × 0.070 ≈ 5.5 mW   (< 0.6 % of 0.92 W)
+```
+
+So the part is electrically **≥4× oversized** and adds under 1 % loss. It is
+kept because it is shielded, AEC-Q200 and already placed — **not** because the
+current needs it. The exact Isat/Irms/DCR of the `-103MEC` suffix must still
+be read off the Coilcraft datasheet at order time `[VERIFY]`.
+
+Consequence for mechanics: XAL5030 is **3.0–3.1 mm tall**, which makes it the
+tallest part on the front side after C8 (see §7).
 
 ## 5. MCU and pin allocation
 
@@ -215,40 +249,71 @@ driver disabled, receiver fully operational — exactly what listen-only needs.
 0402 LED + series resistor from PB9 to GND (or +3V3, depending on selected
 LED). `[VERIFY]` resistor value.
 
-## 7. Component height check (3.0 mm back-side limit)
+## 7. Component heights and the enclosure clearance
 
-| Ref | Part | Side | Height | Verdict |
-|---|---|---|---:|---|
-| J1 | 4 THT solder pads + pigtail | back, through slot | 0 mm on board (wire lies flat) | passes `[VERIFY]` wire dress |
-| J2–J4 | JST-SH 8-pin right-angle | back | ~2.9 mm | fits 3.0 mm `[VERIFY]` |
-| J5 | JST-SH 4-pin right-angle | back | ~2.9 mm | fits `[VERIFY]` |
-| L2 | 10 µH 5×5×2.0 | back | 2.0 mm | fits |
-| C_in | 4.7 µF 25 V 0805 | back | ~1.4 mm | fits |
-| C_bulk | 10 µF 25 V 1206 | back | ~1.6 mm | fits |
-| D2 | SMBJ24A SMB | back | ~2.2 mm | fits |
-| D1 | SS36 SMA | back | ~2.1 mm | fits |
-| U1 | STM32G474CBU6 UFQFPN48 | back | ~0.9 mm | fits |
-| U2 | LM5164-Q1 VSSOP-10 | back | ~1.1 mm | fits |
-| Y1 | 8 MHz 3.2×2.5 | back | ~0.8 mm | fits |
-| C_hold | 25 V polymer, 100–470 µF | front | 4.0–6.0 mm | **only front, verify** `[VERIFY]` |
+### 7.1 What the enclosure CAD gives
 
-**J1:** the board has only 4 through-hole pads and a soldered pigtail, so
-there is no tall connector in the cavity. The wires are dressed to the 20 × 8
-mm slot at `y=+10` and terminated outside in a Micro-Fit receptacle.
-`[VERIFY]` wire gauge, bend radius and strain relief with the real harness.
+From `3d-model/src` (`params.scad`, `body.scad`):
 
-**J2–J4:** right-angle bodies are ~2.9 mm, under the 3.0 mm limit. The mated
-plug extends horizontally into the cavity, not toward the back plate.
-`[VERIFY]` the actual mated height; if >3.0 mm, move the connectors to the
-front side (5.0 mm limit) or use a lower-profile series.
+| Face | Distance to the next part | Limit |
+|---|---|---|
+| Front face — **toward the displays** | **5.0 mm** to the cavity front wall (`STANDOFF_H`), minus the four Ø7.4 standoff bosses at the mounting holes | **≤ 5.0 mm** |
+| Back face — **toward the back plate** | **3.4 mm** to the back-plate inner face (`WEDGE_BACK_Z = −25.5` vs PCB back face `−22.1`) | **≤ 3.0 mm** |
 
-**J5:** same right-angle JST-SH, 2.9 mm.
+The board is held by four M2.5 standoffs that sit **between the PCB and the
+cavity front wall** (`PCB_Z = −20.5`, boss 5.2 mm tall, insert pressed in from
+the rear); the rear screws come in through the back plate. The cable slot
+(20 × 8 mm at `y = +10`) is in the **back plate**, over the board's top edge
+region — PCB `y ≈ +10`, i.e. 7 mm from the J1 pads at `y = 3`.
 
-**Buck inductor and bulk caps:** 2.0 mm and ≤1.6 mm, back side, under 3.0 mm.
+**The component face (F.Cu) must point at the displays.** With L2 at 3.0 mm
+the back gap (3.4 mm, rule 3.0) cannot take the population, while the front
+gap (5.0 mm) can.
 
-**Cranking hold-up capacitor:** any capacitor large enough to ride through a
-real cranking dip is taller than 3.0 mm. It must go on the front side and
-still may not fit 5.0 mm at the required capacitance; see section 8.
+`dummies.scad` still draws its representative connectors *behind* the board.
+That is stale — it predates the front-side placement and must not be used for
+height checks.
+
+### 7.2 Measured heights (STEP models, mm above the board)
+
+Z extent of the placed STEP model, 0 = board surface. U1 uses the closest
+library model (EP 5.15 instead of 5.6) because the exact STEP is missing.
+
+| Ref | Part | Height | Flag |
+|---|---|---:|---|
+| J1 | 4 SMD solder pads | 0.05 | — (was 8.65 mm as a THT header) |
+| C2, C5, C6, C7, C9–C23 | C_0402 | 0.50 | |
+| R1–R8, R10–R18 | R_0402 | 0.35 | |
+| D4 | LED 0402 | 0.50 | |
+| C1, C3, C4 | C_0805 | 1.25 | |
+| F1 | Fuse 1206 | 0.55 | |
+| FB1 | 0603 | 0.80 | |
+| D3 | SOT-23 | 1.20 | |
+| U1 | QFN-48 (proxy) | 0.78 | |
+| U2 | HSOP-8 | 1.10 | |
+| U3 | SOIC-8 | 1.75 | |
+| Y1 | Crystal 3.2×1.5 | 0.93 | |
+| L1 (DNP) | ACM2520 | 1.30 | |
+| **L2** | XAL5030 5.3×5.3 | **3.10** | **> 3.0** |
+| **C8** (DNP) | CP_Elec 6.3×4.5 | **4.50** | **> 3.0** |
+| J2–J4 | JST-SH 8-pin | 2.96 | 0.04 mm under 3.0 |
+| J5 | JST-SH 4-pin | 2.96 | 0.04 mm under 3.0 |
+| TP1–TP10 | 1.0 mm pad | ~0.03 | no model |
+
+**All 67 parts are on the front (F.Cu); there is nothing on the back.**
+Nothing protrudes behind the board: J1 is SMD-only now, and the only holes are
+the 4 × Ø2.7 mm NPTH mounting holes and U2's 6 × Ø0.2 mm plated thermal vias,
+both flush with the surface.
+
+Verdicts:
+
+- **Front (5.0 mm):** everything fits except C8 (4.50 mm), which is DNP.
+  L2 at 3.10 mm and J2–J5 at 2.96 mm are well inside.
+- **Back (3.0 mm):** empty — no height risk at all.
+- J2–J5 at 2.96 mm are 0.04 mm under the back-side rule; they are on the
+  front, so this is informational only.
+- The J2–J5 bodies are right-angle: the mated plug extends horizontally into
+  the cavity, not toward the back plate. `[VERIFY]` the actual mated height.
 
 ## 8. Cranking dip and LM5164-Q1
 
