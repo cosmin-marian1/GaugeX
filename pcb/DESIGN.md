@@ -1,30 +1,31 @@
 # GaugeX PCB — DESIGN
 
-Status: pre-schematic. Everything not confirmed from a datasheet is marked
-`[VERIFY]`. No KiCad project or routing yet.
+Status: schematic and board complete. Board mechanics, stackup, routing and DRC
+numbers are in `pcb/README.md`; parts and prices in `docs/BOM.md`; every open
+datasheet/stock check in `pcb/OPEN-ITEMS.md`. Electrical values not yet
+confirmed from a datasheet are marked `[VERIFY]` at the point of use and
+tracked in that list.
 
 ## 1. Scope
 
-- Board: **50 × 40 × 1.6 mm**, 4-layer preferred.
+- Board: **50 × 40 × 1.6 mm**, 4 layers (see `pcb/README.md`).
 - Mounting: 4 × M2.5 on a **44 × 34 mm** pattern, centred.
 - Enclosure: compact 3-gauge pod v2. PCB sits behind the centre tube.
 - Input: switched ignition **12 V (Kl.15)**, single **3.3 V** rail.
 - CAN: listen-only by default.
 - MCU: **STM32G474CBU6**, UFQFPN48, 128 KB flash / 128 KB RAM.
-- No routing, no firmware in this phase.
+- Firmware is out of scope here (`firmware/`).
 
 ## 2. Mechanical interface
 
-| Item | Value | Source |
+Board outline, thickness, mounting-hole pattern, corner radius, J1 pad geometry
+and the per-face height limits are owned by `pcb/README.md` §Mechanical.
+
+| Enclosure fact | Value | Source |
 |---|---:|---|
-| PCB outline | 50 × 40 mm | enclosure `pcb_w × pcb_h` |
-| PCB thickness | 1.6 mm | spec |
-| Mounting holes | 4 × M2.5, 44 × 34 mm | enclosure `pcb_hole_x/y` |
-| PCB front face to cavity front wall | 5.0 mm | enclosure `CAVITY_FRONT_Z` / `PCB_Z` |
-| PCB back face to back plate | **3.4 mm** | enclosure `WEDGE_BACK_Z` / `PCB_Z` |
-| Back-side component limit | **3.0 mm** | decided, 0.4 mm margin |
-| Back-plate cable slot | **20 × 8 mm at x=0, y=+10** | enclosure `CABLE_SLOT_W/H/Y` |
-| Corner radius | 2.5 mm | proposed |
+| PCB front face to cavity front wall | 5.0 mm | `CAVITY_FRONT_Z` / `PCB_Z` |
+| PCB back face to back plate | 3.4 mm | `WEDGE_BACK_Z` / `PCB_Z` |
+| Back-plate cable slot | 20 × 8 mm at x = 0, y = +10 | `CABLE_SLOT_W/H/Y` |
 
 ### J1 — solder pads, pigtail, external Micro-Fit
 
@@ -33,7 +34,7 @@ pads** on the top edge — the edge nearest the enclosure cable slot:
 
 | Pad | Net | Position |
 |---|---|---|
-| 1 | 12V | top edge, 2.54 mm pitch, pads 2.0 × 2.6 mm |
+| 1 | 12V | top edge, 2.54 mm pitch |
 | 2 | GND | |
 | 3 | CAN_H | |
 | 4 | CAN_L | |
@@ -95,9 +96,10 @@ D2 is after D1, so a reverse-connected battery is blocked instead of clamped.
 | Switching frequency | 300 kHz | proposed |
 | R_RON | 27.5 kΩ (3.3 × 2500 / 300) | `[VERIFY]` E-series value |
 | Inductor | 10 µH, Coilcraft **XAL5030-103MEC**, 5.3 × 5.3 × 3.0 mm | Isat / DCR check in §4.4 |
-| Output caps | 2 × 22 µF / 10 V 0805 + 100 nF | `[VERIFY]` |
-| Bootstrap cap | 2.2 nF | `[VERIFY]` per datasheet |
-| Feedback | 3.3 V divider per datasheet | `[VERIFY]` |
+| Output caps | 2 × 22 µF / 10 V 0805 + 100 nF | `[VERIFY]` derating (see `pcb/OPEN-ITEMS.md`) |
+| Bootstrap cap | 2.2 nF, 50 V, X7R | confirmed, §4.5 |
+| Feedback | 3.3 V divider per datasheet | `[VERIFY]` values |
+| Package | **HSOP-8-1EP** (PowerPAD), 3.9 × 4.9 mm, EP 2.41 × 3.1 | board footprint |
 
 ### 4.3 Power budget
 
@@ -223,7 +225,7 @@ against DS12288 Table 13 (pages 73–74).
 
 ### 6.1 Displays (J2–J4)
 
-8-pin JST-SH 1.0 mm, right-angle, on the **back side**:
+8-pin JST-SH 1.0 mm, right-angle, on the **front side**:
 `VCC, GND, SCL, SDA, DC, CS, RST, BL`.
 
 - SCL/SDA are SPI SCK/MOSI (write-only; MISO not connected).
