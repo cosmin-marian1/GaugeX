@@ -1,7 +1,7 @@
 # GaugeX PCB — DESIGN
 
 Status: schematic and board complete. Board mechanics, stackup, routing and DRC
-numbers are in `pcb/README.md`; parts and prices in `docs/BOM.md`; every open
+numbers are in `pcb/README.md`; parts in `pcb/BOM.md`; every open
 datasheet/stock check in `pcb/OPEN-ITEMS.md`. Electrical values not yet
 confirmed from a datasheet are marked `[VERIFY]` at the point of use and
 tracked in that list.
@@ -497,13 +497,4 @@ clamp voltage or even at 100 V. 300 kHz is a safe choice.
 
 ## 11. Open items
 
-1. AF numbers and VSS/VREF+ pin mapping verified in DS12288; re-check only if the pin allocation changes.
-2. `[VERIFY]` VREF+/VDDA decoupling values against the G4 hardware design note.
-3. `[VERIFY]` J1 pigtail wire gauge, bend radius and strain relief through the 20×8 slot.
-4. `[VERIFY]` J2–J4 mated height; 7-pin vs 8-pin module pinout.
-5. `[VERIFY]` cranking profile; BOR4 threshold confirmed from DS12288 Table 19.
-6. `[VERIFY]` exact orderable MCU code and stock.
-7. `[VERIFY]` buck inductor part number, saturation current and height.
-8. `[VERIFY]` display backlight current and whether a transistor is needed.
-9. `[VERIFY]` EN/UVLO divider values and 100 nF filter against the final BOM.
-10. `[VERIFY]` Micro-Fit cable-end kit part numbers (housing, terminals, TPA).
+The consolidated list (blocks-fab first) is in `pcb/OPEN-ITEMS.md`.

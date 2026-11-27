@@ -7,8 +7,8 @@ Preview: `pcb/GaugeX/GaugeX_board_routed.png`
 
 | Document | Contents |
 |---|---|
-| `docs/DESIGN.md` | electrical design: power, buck, MCU pins, interfaces |
-| `docs/BOM.md` | parts list (generated from the schematic fields) |
+| `pcb/DESIGN.md` | electrical design: power, buck, MCU pins, interfaces |
+| `pcb/BOM.md` | parts list (generated from the schematic fields) |
 | `pcb/OPEN-ITEMS.md` | open `[VERIFY]` / Rev-B / fab items |
 | `pcb/sim/README.md` | buck/front-end model, its results and limits |
 | `docs/datasheets/INDEX.md` | datasheet index with page citations |
@@ -34,7 +34,7 @@ Preview: `pcb/GaugeX/GaugeX_board_routed.png`
 
 **Height rule:** front face (toward the displays) **≤ 5.0 mm**; back face
 (toward the back plate) **≤ 3.0 mm** (3.4 mm cavity gap). Measured part heights
-and verdicts are in `docs/DESIGN.md` §7.
+and verdicts are in `pcb/DESIGN.md` §7.
 
 ## Stackup
 
@@ -87,7 +87,7 @@ and 0.13 mm (0.46 vias) are at or above the 0.13 mm minimum.
 | `U1` | 16 EP land pads given the GND net + F.Cu/F.Mask |
 | `U2` | six 0.2 mm PTH pad-holes replaced by 0.5/0.2 vias |
 
-ERC: **0 violations** (netlist table and result in `docs/DESIGN.md` §2/§5).
+ERC: **0 violations** (netlist table and result in `pcb/DESIGN.md` §2/§5).
 
 ## Changes from the original layout
 
