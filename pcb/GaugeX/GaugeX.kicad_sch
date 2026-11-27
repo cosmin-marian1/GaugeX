@@ -8760,6 +8760,10 @@
 				)
 			)
 		)
+		(property "MPN" "GRM21BR61A226ME44L"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "68792628-affe-45d1-9555-b74c2d5ebe6d")
 		)
@@ -8990,6 +8994,14 @@
 				)
 			)
 		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "0080bdb7-a0ab-4d09-a4d4-46771150f338")
 		)
@@ -9068,6 +9080,10 @@
 				)
 			)
 		)
+		(property "MPN" "BLM18AG601SN1D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "51f9bd05-c2ae-49d7-873d-e558e0ca6db8")
 		)
@@ -9145,6 +9161,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM155R61C105KA12D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "e3ca577c-8b62-42e8-930d-0ddb7fade198")
@@ -9300,6 +9320,14 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402FR-0710KL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "631f8bd4-cb3d-4689-9157-8e95ff17b359")
 		)
@@ -9378,6 +9406,10 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402JR-070RL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "31516739-3a8f-43b3-81b5-fbb1e9475de3")
 		)
@@ -9455,6 +9487,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "STM32G474CBU6"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "609dcf41-7e64-4a9d-ba00-ccb50a6648fb")
@@ -9826,6 +9862,10 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402FR-0715KL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "6c80741d-a900-4810-983c-f1ec49407466")
 		)
@@ -9903,6 +9943,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "PESD2CAN,115"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "c29e85c1-4b7f-4471-b1a2-99c04d057b3d")
@@ -10139,6 +10183,10 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402JR-070RL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "59e0566c-b1f4-4bfc-866b-93a47b9de8cf")
 		)
@@ -10239,7 +10287,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "26f0e9bf-654f-4364-b533-3f07c710956e")
 		(property "Reference" "L1"
 			(at 448.31 162.56 0)
@@ -10251,7 +10299,7 @@
 				)
 			)
 		)
-		(property "Value" "CMC DNP"
+		(property "Value" "CMC"
 			(at 448.31 170.18 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10292,6 +10340,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "ACM2520-101-2P"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "6b8fd708-c890-4eaa-938f-c86625bf995d")
@@ -10453,6 +10505,10 @@
 				)
 			)
 		)
+		(property "MPN" "SM08B-SRSS-TB(LF)(SN)"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "899e0dfe-edbf-4338-a943-820239c2d23c")
 		)
@@ -10549,6 +10605,10 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402FR-0757K6L"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "d626b270-e3f7-4e74-b5a5-9963c31b6668")
 		)
@@ -10626,6 +10686,14 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "a48e4f10-e12a-4de5-9d7c-dfe7236868fe")
@@ -10705,6 +10773,10 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402JR-070RL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "a0b2f036-1ba8-49c0-a375-af62aa5e4519")
 		)
@@ -10782,6 +10854,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "RC0402FR-0727K5L"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "fefd998b-a45b-44df-987c-d48be80857de")
@@ -11087,6 +11163,14 @@
 				)
 			)
 		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "feada992-9609-4129-8a9c-30efc349528e")
 		)
@@ -11164,6 +11248,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM155R61C105KA12D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "d4f246b7-f46f-4e75-9695-88a2c3878f6a")
@@ -11318,6 +11406,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "SM08B-SRSS-TB(LF)(SN)"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "44c42fa0-d48e-4c87-ab68-0fdb5b2f9e90")
@@ -11491,6 +11583,10 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402JR-070RL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "e4f8c02b-97c0-400b-ad6e-25eb7374e08a")
 		)
@@ -11644,6 +11740,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM1555C1H100JA01D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "63c98ae4-8904-475e-b5a0-a5d7c1edf8c0")
@@ -11799,6 +11899,14 @@
 				)
 			)
 		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "4461ce87-3bbd-49d5-bf9f-08e46bdbe264")
 		)
@@ -11876,6 +11984,14 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "RC0402FR-0710KL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "f46fe84e-25d0-4538-97c8-0c962bd4991c")
@@ -12107,6 +12223,10 @@
 				)
 			)
 		)
+		(property "MPN" "TCAN330GDR"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "bccec64c-a53b-41ea-bcfd-f57a6d00a494")
 		)
@@ -12202,6 +12322,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "RC0402FR-07100KL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "6266a9c9-2ff4-4a53-8793-a10f1beb2863")
@@ -12530,7 +12654,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "595d9c09-23ca-4c86-8211-30cf5ffac5c0")
 		(property "Reference" "R8"
 			(at 786.13 163.83 0)
@@ -12542,7 +12666,7 @@
 				)
 			)
 		)
-		(property "Value" "120R DNP"
+		(property "Value" "120R"
 			(at 786.13 171.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12583,6 +12707,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "RC0402FR-07120RL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "11dc3e72-9968-4df4-a909-af9c0c08e3c5")
@@ -12737,6 +12865,14 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "d5c5db60-aafb-47c5-b0ef-ebfc14f36cae")
@@ -13195,6 +13331,10 @@
 				)
 			)
 		)
+		(property "MPN" "SM04B-SRSS-TB(LF)(SN)"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "0d920906-9c3b-4205-b047-5c81ccc74612")
 		)
@@ -13278,6 +13418,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "RC0402FR-07300KL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "2f65855b-3cdc-4b0f-b137-cd4e94cc9e49")
@@ -13433,6 +13577,10 @@
 				)
 			)
 		)
+		(property "MPN" "GCM155R71H222KA37D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "75c79e75-93ed-4008-8385-5cade051ffde")
 		)
@@ -13510,6 +13658,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "RC0402FR-07100KL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "3b6a591a-9cca-44f6-a886-09ee90fafec0")
@@ -13739,6 +13891,14 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "91486e03-40d6-4ed2-bcd8-eabc156d6741")
@@ -14198,6 +14358,14 @@
 				)
 			)
 		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "d1c78f3a-2a14-4b0f-9a7f-3c90667feb35")
 		)
@@ -14428,6 +14596,14 @@
 				)
 			)
 		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "53b6532a-9758-402e-8f0d-a6a0db475a76")
 		)
@@ -14581,6 +14757,14 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "263ee27c-fe6b-4701-ad3f-e8946831f9b7")
@@ -14887,6 +15071,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "RC0402FR-071ML"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "2baec2fd-5318-4011-af96-2f0ac2d79ce5")
@@ -15421,6 +15609,14 @@
 				)
 			)
 		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "3c235743-82ef-4a8f-a19c-3de1a29a84ad")
 		)
@@ -15575,6 +15771,14 @@
 				)
 			)
 		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "7d7a3955-9cab-4909-b554-75f397644c98")
 		)
@@ -15652,6 +15856,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "LM5164QDDARQ1"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "853980df-0adb-4ba5-ac8d-9afadf468cca")
@@ -16284,6 +16492,10 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402JR-070RL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "785f02dd-949a-4c90-8739-376780e54271")
 		)
@@ -16666,6 +16878,14 @@
 				)
 			)
 		)
+		(property "MPN" "RC0402FR-0710KL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "baef2c69-7840-4417-ab59-e4c0e4d6c97f")
 		)
@@ -16743,6 +16963,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM1555C1H100JA01D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "6ed68cb3-d512-4586-b30b-647423a08e64")
@@ -16898,6 +17122,10 @@
 				)
 			)
 		)
+		(property "MPN" "ABM8-8.000MHZ-B2-T"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "ab13b9fd-1193-4480-a4d9-201554be6bce")
 		)
@@ -16922,7 +17150,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "c37bdb25-e67f-4cbe-a704-2814165e46bb")
 		(property "Reference" "C8"
 			(at 709.93 57.15 0)
@@ -16934,7 +17162,7 @@
 				)
 			)
 		)
-		(property "Value" "100uF DNP"
+		(property "Value" "100uF"
 			(at 709.93 64.77 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17358,6 +17586,14 @@
 				)
 			)
 		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "24e6acdd-8594-42bf-8e4c-938a7e5e683a")
 		)
@@ -17587,6 +17823,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "RC0402FR-071KL"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "b59da962-c95f-45a1-9999-f9336134cad6")
@@ -17968,6 +18208,10 @@
 				)
 			)
 		)
+		(property "MPN" "0437.500WR"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "03f5f574-c265-4ff2-9cc1-910a3e57b32f")
 		)
@@ -18045,6 +18289,14 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "18e4ad68-d164-4607-8cae-85d70e8bcf96")
@@ -18504,6 +18756,10 @@
 				)
 			)
 		)
+		(property "MPN" "SM08B-SRSS-TB(LF)(SN)"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "e344316b-52ae-439c-abea-7e6423b11cf8")
 		)
@@ -18599,6 +18855,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM21BR61E475KA12L"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "d3ffa572-5aef-416b-8f0c-720d48ed469e")
@@ -18754,6 +19014,10 @@
 				)
 			)
 		)
+		(property "MPN" "SS36-E3/57T"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "9b55ad9d-20a6-4e59-b513-dae3d46aa8ad")
 		)
@@ -18831,6 +19095,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "XAL5030-103MEC"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "72bfcc00-d56e-4020-b016-39d8601908e7")
@@ -19062,6 +19330,10 @@
 				)
 			)
 		)
+		(property "MPN" "SMBJ24A"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
 		(pin "1"
 			(uuid "1e0618c9-1e2e-4a27-9534-223670c2f658")
 		)
@@ -19215,6 +19487,14 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM155R71H104KA88D"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "ebc3a42c-c2e3-4770-af67-0e2c29b916b2")
@@ -19445,6 +19725,10 @@
 					(size 1.27 1.27)
 				)
 			)
+		)
+		(property "MPN" "GRM21BR61A226ME44L"
+			(at 0 0 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
 		)
 		(pin "1"
 			(uuid "6d1cbd84-c95d-41ac-be68-9cacc59b1c0d")
