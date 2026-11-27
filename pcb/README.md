@@ -87,7 +87,7 @@ and 0.13 mm (0.46 vias) are at or above the 0.13 mm minimum.
 | `U1` | 16 EP land pads given the GND net + F.Cu/F.Mask |
 | `U2` | six 0.2 mm PTH pad-holes replaced by 0.5/0.2 vias |
 
-ERC: **0 violations** (netlist table and result in `pcb/DESIGN.md` §2/§5).
+ERC: **0 violations** (netlist table and result in `pcb/DESIGN.md` §5.3).
 
 ## Changes from the original layout
 

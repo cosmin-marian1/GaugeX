@@ -44,7 +44,8 @@ C2) → U2 VIN pin**. The model therefore applies the dip at **J1** and passes
 it through the **SS36**: `VIN = V_J1 − VF_SS36(I)`, with
 `VF = 0.30 V + 0.15 Ω·I` (0.35 V at 0.3 A, 0.75 V at 3 A — Vishay 88751).
 
-The UVLO divider (1 M / 300 k) is on **VIN**, not on J1, so the thresholds are:
+The UVLO divider (1 M / 300 k) is on **VIN**, not on J1 (design values in
+`pcb/DESIGN.md` §4.2/§8.6), so the thresholds are:
 
 | | VIN pin | J1 side (≈ +0.3 V drop) |
 |---|---|---|
