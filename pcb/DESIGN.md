@@ -221,6 +221,27 @@ against DS12288 Table 13 (pages 73–74).
 - USART1 is on PA9/PA10; PB6/PB7 are used as GPIO for display 3, not USART1.
 - No other conflict found.
 
+### 5.3 Verified net membership
+
+ERC: **PASS, 0 violations** (KiCad 10.0.8, single A1 sheet). Unused MCU pins
+carry no-connect flags. Artifacts in `pcb/GaugeX/`: `GaugeX_schematic.pdf`,
+`GaugeX_schematic.png`, `GaugeX.net`, `ERC_report.json`.
+
+| Net | Members |
+|---|---|
+| `CANH` | L1.2, R17.2, R8.1, U3.7 |
+| `CANL` | L1.4, R18.2, R8.2, U3.6 |
+| `CAN_TX` | U1.34 (PA12), U3.1 (TXD) |
+| `CAN_RX` | U1.33 (PA11), U3.4 (RXD) |
+| `CAN_SILENT` | U1.17 (PB0), U3.8 (S) |
+| `+3V3` | U1 VDD 23/35/48, VBAT 1, U3.3, display connectors, pull-ups |
+| `GND` | U1.49 (exposed pad), U2.1/9, U3.2/5, all decoupling |
+| `DISP1_SCK` | U1.13 (PA5), J2.3 |
+| `DISP2_SCK` | U1.26 (PB13), J3.3 |
+| `DISP3_SCK` | U1.41 (PB3), J4.3 |
+| `DISP_RST` | U1.10 (PA2), J2.7, J3.7, J4.7 |
+| `HSE_IN/OUT` | U1.5/6, Y1.1/2, C10/C11 |
+
 ## 6. Interfaces
 
 ### 6.1 Displays (J2–J4)

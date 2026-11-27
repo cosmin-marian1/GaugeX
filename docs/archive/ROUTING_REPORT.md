@@ -1,3 +1,5 @@
+> **Archived 2026-11-27.** Superseded: final routing numbers are in `pcb/README.md`; this is the staged-routing process log.
+
 # GaugeX PCB — routing report
 
 Board: `pcb/GaugeX/GaugeX.kicad_pcb`

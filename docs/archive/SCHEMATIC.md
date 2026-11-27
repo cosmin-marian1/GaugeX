@@ -1,3 +1,5 @@
+> **Archived 2026-11-27.** Superseded: ERC result and net membership are now in `pcb/DESIGN.md` §5.3, board status in `pcb/README.md`.
+
 # GaugeX PCB — schematic status
 
 KiCad project: `pcb/GaugeX/GaugeX.kicad_pro`

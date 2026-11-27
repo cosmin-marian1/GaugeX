@@ -1,3 +1,5 @@
+> **Archived 2026-11-27.** Superseded: merged into `pcb/README.md` §Mechanical/Stackup/Routing/DRC.
+
 # GaugeX PCB — layout status
 
 KiCad project: `pcb/GaugeX/GaugeX.kicad_pro`

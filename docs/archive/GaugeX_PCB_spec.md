@@ -1,3 +1,5 @@
+> **Archived 2026-11-27.** Superseded by `pcb/DESIGN.md` (design) and `pcb/OPEN-ITEMS.md` (open checks). This is the original requirements/decision log, kept for traceability only.
+
 # GaugeX — PCB specification (input for the planner)
 
 Status: concept, not built physically. Tags: [DECIDED] = fixed, [VERIFY] = check in datasheet before using, [DECIDE] = open choice, ask me.
