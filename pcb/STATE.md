@@ -1,6 +1,7 @@
 # GaugeX — project state
 
-Branch `docs-cleanup`, updated 2026-11-28. Facts only; session handoff.
+Branch `main` (`docs-cleanup` merged), updated 2026-11-28. Facts only; session
+handoff.
 Open items and `[VERIFY]`: `pcb/OPEN-ITEMS.md` (not copied here).
 
 **Rule: each design value lives in exactly one file.** Owners: `pcb/README.md`
@@ -36,19 +37,25 @@ Open items and `[VERIFY]`: `pcb/OPEN-ITEMS.md` (not copied here).
 - `e74c89e` review: `pcb/review/pins.md`, pin/net table from the netlist.
 
 Validated on the current board: ERC 0; DRC 0 errors, 0 unconnected, 4 documented
-`lib_footprint_mismatch` warnings (C2, C5, U1, U2). No Gerber/drill/P&P yet.
+`lib_footprint_mismatch` warnings (C2, C5, U1, U2). Re-run 2026-11-28 together
+with a schematic↔board net comparison (0 mismatches): `pcb/review/final-report.md`.
+Pin names, pads and AF numbers audited against ST pin data: `pcb/review/pins_names.md`.
+No Gerber/drill/P&P yet.
 
 ## Blocked for fab
 
 All in `pcb/OPEN-ITEMS.md` §A. First: A1 — Y1 footprint `3.2 × 1.5` has no
-8 MHz part; it must become `3.2 × 2.5` (ABM8) before any Gerber export. Then
-A2–A8: stencil/P&P exclusions, DNP set, LCSC codes, stock, DRC warnings,
-Gerber/DFM export.
+8 MHz part; it must become `3.2 × 2.5` (ABM8) before any Gerber export. The
+2-pad footprint also shorts HSE_IN/OUT to the ABM8 GND pads, so A1 needs the
+4-pad footprint **and** `Device:Crystal_GND24` (`pcb/review/pins_names.md` §5).
+Then A2–A8: stencil/P&P exclusions, DNP set (the board carries no `dnp` flag
+yet, so `--exclude-dnp` would not exclude R8/L1), LCSC codes, stock, DRC
+warnings, Gerber/DFM export.
 
 ## Next
 
-1. Fix A1 (Y1 footprint), then export Gerber/drill/BOM/P&P and run the JLCPCB
-   DFM profile.
+1. Fix A1 (Y1 footprint + crystal symbol), then export Gerber/drill/BOM/P&P and
+   run the JLCPCB DFM profile.
 2. Assign LCSC codes and confirm stock (A4–A6); quote.
-3. Merge `docs-cleanup` → `main` and push — needs user approval.
-4. Firmware is out of scope here (`firmware/`).
+3. Firmware is out of scope here (`firmware/`). Board bring-up must assume HSI
+   until A1 is fixed — the 8 MHz HSE cannot start on the current board.

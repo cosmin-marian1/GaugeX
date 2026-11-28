@@ -11,9 +11,9 @@ the build.
 
 | # | Item | Why it blocks | Source |
 |---|---|---|---|
-| A1 | **Y1 footprint vs part**: footprint `Crystal_SMD_3215-2Pin_3.2x1.5mm`, MPN `ABM8-8.000MHZ-B2-T` is 3.2 × 2.5 mm | 3.2 × 1.5 is the 32.768 kHz package (Abracon ABS07); no 8 MHz part exists in that size → the crystal will not fit the pads | `pcb/BOM.md` note; Abracon ABS07 / ABM8 series |
+| A1 | **Y1 footprint vs part**: footprint `Crystal_SMD_3215-2Pin_3.2x1.5mm`, MPN `ABM8-8.000MHZ-B2-T` is 3.2 × 2.5 mm | 3.2 × 1.5 is the 32.768 kHz package (Abracon ABS07); no 8 MHz part exists in that size. With an ABM8 fitted the 1.8 mm pads cover a crystal terminal *and* a GND terminal → **HSE_IN/HSE_OUT shorted to GND**. Needs 4-pad `Crystal_SMD_3225-4Pin_3.2x2.5mm` **and** `Device:Crystal_GND24` (pads 2/4 = GND), otherwise pads 2/4 are unconnected | `pcb/review/pins_names.md` §5; Abracon ABM8 rev 07-29-20 |
 | A2 | **J1 stencil / pick-and-place**: 4 SMD pads, no paste window | must be excluded from the stencil and marked "do not place" | `pcb/README.md` |
-| A3 | **DNP set**: C8, L1, R8 native DNP | assembler must skip them; R17/R18 (0 Ω bypass) are fitted | `pcb/BOM.md` |
+| A3 | **DNP set**: C8, L1, R8 native DNP | assembler must skip them; R17/R18 (0 Ω bypass) are fitted. The flag lives only on the schematic symbols — **no footprint in `GaugeX.kicad_pcb` has `dnp`**, so `kicad-cli pcb export pos --exclude-dnp` would still emit R8/L1 | `pcb/BOM.md`; `pcb/review/final-report.md` |
 | A4 | **LCSC codes**: only C1525 (100 nF) and C25744 (10 k) assigned; in-house codes missing for the other lines | JLC assembly cannot be quoted | `pcb/BOM.md` |
 | A5 | **U1 exact orderable code + stock** (`STM32G474CBU6`) | MCU lead time/stock | `pcb/BOM.md` |
 | A6 | **U2 stock** `LM5164QDDARQ1`; **U3** automotive `-Q1` variant availability | single-source automotive parts | `pcb/BOM.md` |
